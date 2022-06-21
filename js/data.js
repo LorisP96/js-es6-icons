@@ -126,19 +126,22 @@ const cardArray = [
 
 const container = document.querySelector('.container');
 
-scrollArrayElement(cardArray, container);
-
 let categories = document.getElementById('icon-type');
+
+scrollArrayElement(cardArray, container);
 
 categories.addEventListener('change', 
 	function() {
 		container.innerHTML = '';
+		categories = 'all'
 		const currentValue = this.value;
 		if (currentValue !== 'all') {
 			const filteredArray = cardArray.filter((element) => {
 				return element.type === currentValue;
 			});
 			scrollArrayElement(filteredArray, container);
+		} else {
+			scrollArrayElement(cardArray, container);
 		}
 	}
 )
