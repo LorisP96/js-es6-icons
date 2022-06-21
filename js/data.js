@@ -126,14 +126,35 @@ const cardArray = [
 
 const container = document.querySelector('.container');
 
-cardArray.forEach((element) => {
-	container.innerHTML += `
-    <div class="card">
-        <div class="icon ${element.color}">
-			<i class="${element.family} ${element.prefix}${element.name}"></i>
-		</div>
-        <div class="name"></div>
-    </div>
-	`
-});
+scrollArrayElement(cardArray, container);
 
+let categories = document.getElementById('icon-type');
+
+categories.addEventListener('change', 
+	function() {
+		container.innerHTML = '';
+		const currentValue = this.value;
+		if (currentValue !== 'all') {
+			const filteredArray = cardArray.filter((element) => {
+				return element.type === currentValue;
+			});
+			scrollArrayElement(filteredArray, container);
+		}
+	}
+)
+
+// function
+function scrollArrayElement(Array, Container) {
+	Array.forEach((element) => {
+
+		let newCard = `
+		<div class="card">
+			<div class="icon ${element.color}">
+				<i class="${element.family} ${element.prefix}${element.name}"></i>
+			</div>
+			<div class="name">${element.name}</div>
+		</div>
+		`;
+		Container.innerHTML += newCard;
+	});
+}
