@@ -1,0 +1,29 @@
+header {
+    text-align: center;
+}
+
+.blue {
+    color: blue;
+}
+
+.green {
+    color: green;
+}
+
+.orange {
+    color: orange;
+}
+
+i {
+    font-size: 30px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.input {
+    text-align: center;
+    margin-bottom: 30px;
+}
