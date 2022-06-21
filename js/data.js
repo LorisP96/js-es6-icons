@@ -124,6 +124,11 @@ const cardArray = [
 	}
 ];
 
+cardArray.forEach((element) => {
+	console.log(element)
+	element.color = generateColor();
+});
+
 const container = document.querySelector('.container');
 
 let categories = document.getElementById('icon-type');
@@ -147,12 +152,13 @@ categories.addEventListener('change',
 )
 
 // function
+
 function scrollArrayElement(Array, Container) {
 	Array.forEach((element) => {
 
 		let newCard = `
 		<div class="card">
-			<div class="icon ${element.color}">
+			<div class="icon" style="color: ${element.color}">
 				<i class="${element.family} ${element.prefix}${element.name}"></i>
 			</div>
 			<div class="name">${element.name}</div>
@@ -160,4 +166,22 @@ function scrollArrayElement(Array, Container) {
 		`;
 		Container.innerHTML += newCard;
 	});
+}
+// prima del bonus: <div class="icon ${element.color}">
+
+function generateColor() {
+	let color = '#';
+	const symbols = '0123456789abcdef';
+	
+	for(let i = 0; i < 6; i++) {
+		const randomIndex = getRndInteger(0, symbols.length - 1);
+		const randomSymbol = symbols[randomIndex];
+		color += randomSymbol;
+	}
+	return color;
+	
+}
+
+function getRndInteger(min, max) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
